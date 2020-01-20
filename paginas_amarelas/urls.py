@@ -1,9 +1,9 @@
 """paginas_amarelas URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The `urlpterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
-Function views
+Function vi'ews
     1. Add an import:  from my_app import views
     2. Add a URL to urlpatterns:  path('', views.home, name='home')
 Class-based views
@@ -14,8 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+from lista_telefonica.views import ContatoViewSet,AnuncioViewSet
+
+from rest_framework import  routers 
+router = routers.DefaultRouter()
+
+router.register(r'contatos',ContatoViewSet) 
+
+
+
+router.register(r'anuncio',AnuncioViewSet) 
+
+
+
 
 urlpatterns = [
+    path(r'',include(router.urls)),
     path('admin/', admin.site.urls),
 ]
